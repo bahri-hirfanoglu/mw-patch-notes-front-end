@@ -6,23 +6,33 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-lg-8">
-          <div class="row">
-            <PostCard :title="'Welcome to Blog Post!'" :date="'Posted on January 1, 2021 by Start Bootstrap'" :detail="'Science is an enterprise that should be cherished as an activity of the free human mind... '"/>
+          <div
+            class="row"
+            v-for="(item, index) in data"
+            v-bind:item="item._id"
+            v-bind:index="index"
+            v-bind:key="item._id"
+          >
+            <PostCard
+              :title="item.title"
+              :date="item.createdDate"
+              :detail="item.detail"
+            />
           </div>
         </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
           <!-- Search widget-->
-          <Search/>
+          <Search />
           <!-- Categories widget-->
-          <Categories/>
+          <Categories />
           <!-- Side widget-->
-          <Widget/>
+          <Widget />
         </div>
       </div>
     </div>
     <!-- Footer-->
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -31,8 +41,10 @@ import Nav from "./inc/Nav";
 import PostCard from "./post/PostCard";
 import Categories from "./side/Categories";
 import Widget from "./side/Widget";
-import Footer from "./inc/Footer"
+import Footer from "./inc/Footer";
 import Search from "./side/Search";
+import Api from "../services/api";
+import { getPatchNotes } from "../query/index";
 
 export default {
   name: "Home",
@@ -42,17 +54,18 @@ export default {
     Categories,
     Widget,
     Footer,
-    Search
+    Search,
   },
 
   data() {
     return {
-       data: {title: "wewewe", date: "wewew", detail: "wewe"}
+      data: [],
     };
   },
-
-  mounted() {},
-
+  async mounted() {
+    let result = await Api.sendQuery(getPatchNotes());
+    this.data = result.data.patchNotes;
+  },
   methods: {},
 };
 </script>

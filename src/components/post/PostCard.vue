@@ -22,7 +22,7 @@
       <!-- Post content-->
       <section class="mb-5">
         <p class="mb-4">
-          {{detail}}<a href="#">Read more</a>
+          {{detail}}<a href="#"> Read more</a>
         </p>
       </section>
     </article>
