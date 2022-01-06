@@ -5,10 +5,11 @@
       <!-- Post header-->
       <header class="mb-4">
         <!-- Post title-->
-        <h4 class="fw-bolder mb-1">{{title}}</h4>
+        <h4 class="fw-bolder mb-1">{{ title }}</h4>
         <!-- Post meta content-->
         <div class="text-muted fst-italic mb-2">
-          {{date}}
+          Posted on {{ date }} by {{ author }}
+          
         </div>
       </header>
       <!-- Preview image figure-->
@@ -21,9 +22,7 @@
       </figure>
       <!-- Post content-->
       <section class="mb-5">
-        <p class="mb-4">
-          {{detail}}<a href="#"> Read more</a>
-        </p>
+        <p class="mb-4">{{ detail }}<a href="#"> Read more</a></p>
       </section>
     </article>
   </div>
@@ -34,18 +33,12 @@ export default {
   name: "PostCard",
 
   data() {
-    return {
-     
-    };
+    return {};
   },
-  props:[
-        "title",
-        "detail",
-        "date"
-  ],
+  props: ["title", "detail", "date", "author"],
   mounted() {},
 
-  methods: {},
+  methods: {  },
 };
 </script>
 

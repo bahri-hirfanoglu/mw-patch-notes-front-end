@@ -6,17 +6,16 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-lg-8">
-          <div
-            class="row"
-            v-for="(item, index) in data"
-            v-bind:item="item._id"
-            v-bind:index="index"
-            v-bind:key="item._id"
-          >
+          <div class="row">
             <PostCard
+              v-for="(item, index) in data"
+              v-bind:item="item._id"
+              v-bind:index="index"
+              v-bind:key="item._id"
               :title="item.title"
-              :date="item.createdDate"
+              :date="item._id"
               :detail="item.detail"
+              :author="item.author"
             />
           </div>
         </div>
@@ -44,7 +43,7 @@ import Widget from "./side/Widget";
 import Footer from "./inc/Footer";
 import Search from "./side/Search";
 import Api from "../services/api";
-import { getPatchNotes } from "../query/index";
+import { getPatchNote } from "../query/index";
 
 export default {
   name: "Home",
@@ -63,7 +62,8 @@ export default {
     };
   },
   async mounted() {
-    let result = await Api.sendQuery(getPatchNotes());
+    let result = await Api.sendQuery(getPatchNote("61d703e52443699f5eef8c05").query);
+    console.log(result)
     this.data = result.data.patchNotes;
   },
   methods: {},
