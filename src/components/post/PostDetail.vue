@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-8">
+  <div class="col-lg-12">
     <!-- Post content-->
     <article>
       <!-- Post header-->

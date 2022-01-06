@@ -5,9 +5,14 @@
       <div class="row">
         <div class="col-sm-12">
           <ul class="list-unstyled mb-0">
-            <li><a href="#!">12/01/2021 - Patch Notes</a></li>
-            <li><a href="#!">16/01/2021 - Patch Notes</a></li>
-            <li><a href="#!">22/01/2021 - Patch Notes</a></li>
+            <li
+              v-for="(item, index) in data"
+              v-bind:item="item._id"
+              v-bind:index="index"
+              v-bind:key="item._id"
+            >
+            <a :href="'/' + item.patchName">{{item.createdAt}} - Patch Notes</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -22,7 +27,7 @@ export default {
   data() {
     return {};
   },
-
+  props:["data"],
   mounted() {},
 
   methods: {},
