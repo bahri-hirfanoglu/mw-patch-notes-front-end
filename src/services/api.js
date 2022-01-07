@@ -1,23 +1,26 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:6650/api";
+const BASE_URL = "http://localhost:6650";
 
 class api {
   static async sendQuery(query, variables) {
     const headers = {
-      "content-type": "application/json"
+      "content-type": "application/json",
     };
     const graphqlQuery = {
       query,
       variables,
     };
     const response = await axios({
-      url: API_URL,
+      url: `${BASE_URL}/api`,
       method: "post",
       headers: headers,
       data: graphqlQuery,
     });
     return response.data;
+  }
+  static async loginAdmin(variables) {
+    return await axios.post(`${BASE_URL}/login`, variables);
   }
 }
 

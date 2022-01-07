@@ -15,7 +15,7 @@
           <h4 class="fw-bolder mb-1">{{ item.title }}</h4>
           <!-- Post meta content-->
           <div class="text-muted fst-italic mb-2">
-            Posted on {{ item.date }} by {{ item.author }}
+            Posted on {{ item.createdAt }} by {{ item.author }}
           </div>
         </header>
         <!-- Preview image figure-->
@@ -29,7 +29,7 @@
         <!-- Post content-->
         <section class="mb-5">
           <p class="mb-4">
-            {{ item.detail }}<a :href="'/' + item.patchName"> Read more</a>
+            {{ item.detail }}<a :href="'/patch/' + item.patchName"> Read more</a>
           </p>
         </section>
       </article>

@@ -5,17 +5,14 @@
       <!-- Post header-->
       <header class="mb-4">
         <!-- Post title-->
-        <h1 class="fw-bolder mb-1">Welcome to Blog Post!</h1>
+        <h1 class="fw-bolder mb-1">{{data.title}}</h1>
         <!-- Post meta content-->
         <div class="text-muted fst-italic mb-2">
-          Posted on January 1, 2021 by Start Bootstrap
+          Posted on {{ data.createdAt }} by {{ data.author }}
         </div>
         <!-- Post categories-->
         <a class="badge bg-secondary text-decoration-none link-light" href="#!"
-          >Web Design</a
-        >
-        <a class="badge bg-secondary text-decoration-none link-light" href="#!"
-          >Freebies</a
+          >{{data.tag != null ? data.tag.name : "Notes"}}</a
         >
       </header>
       <!-- Preview image figure-->
@@ -144,14 +141,23 @@
 </template>
 
 <script>
+import Api from "../../services/api";
+import { getPatchNote } from "../../query/index";
 export default {
   name: "PostDetail",
 
   data() {
-    return {};
+    return {
+      data: {}
+    };
   },
 
-  mounted() {},
+  async mounted() {
+    let id = this.$route.params.id;
+    let result = await Api.sendQuery(getPatchNote(id).query);
+    this.data = result.data.patchNote;
+    console.log(this.data)
+  },
 
   methods: {},
 };
