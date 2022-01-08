@@ -6,7 +6,6 @@
 
 <script>
 import Home from './components/Home.vue'
-
 export default {
   name: 'App',
   components: {
@@ -17,4 +16,5 @@ export default {
 
 <style>
 @import './assets/css/styles.css';
+
 </style>

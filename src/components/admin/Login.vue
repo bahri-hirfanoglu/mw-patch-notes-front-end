@@ -23,6 +23,9 @@
         </div>
         <hr />
         <button v-on:click="login" class="btn btn-primary">Submit</button>
+        <div class="alert alert-danger mt-2" role="alert" v-if="errorMessage != ''">
+          {{errorMessage}}
+        </div>
       </div>
     </div>
   </div>
@@ -36,6 +39,7 @@ export default {
   data() {
     return {
       user: { username: null, password: null },
+      errorMessage: ""
     };
   },
 
@@ -57,7 +61,7 @@ export default {
           }
         }
       } catch (err) {
-        console.log(err);
+        this.errorMessage = err.response.data
       }
     },
   },
