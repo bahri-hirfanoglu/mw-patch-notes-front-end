@@ -136,7 +136,8 @@ const getNoteTags = () => {
       noteTags {
         _id
         name  
-        color
+        color,
+        createdAt
       }
     }
     `,
@@ -160,7 +161,7 @@ const getNoteTag = (id) => {
 
 const addNoteTag = (name, color, createdAt) => {
   var data = {
-    query: `{
+    query: `
       mutation addNoteTag($name:String!, $color:String!, $createdAt:String!) {
         addNoteTag(name:$name, color:$color, createdAt:$createdAt){
           _id
@@ -201,7 +202,7 @@ const updateNoteTag = (id, name, color) => {
 
 const deleteNodeTag = (id) => {
   var data = {
-    query: `{
+    query: `
       mutation deleteNoteTag($id:ID!) {
         deleteNoteTag(id:$id){
           _id

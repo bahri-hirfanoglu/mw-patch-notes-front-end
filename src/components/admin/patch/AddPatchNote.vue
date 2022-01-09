@@ -34,8 +34,6 @@
          </div>
         <hr />
         <button  @click="savedata" class="btn btn-primary">Add</button>
-        <div class="alert alert-danger mt-2" role="alert">
-        </div>
       </div>
     </div>
 </template>

@@ -16,11 +16,23 @@
           >
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="#add" @click="changeShow('ListTags')"
+            >List Tags</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#add" @click="changeShow('AddTags')"
+            >Add Tags</a
+          >
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-danger" href="#" @click="logout">Logout</a>
         </li>
       </ul>
       <AddPatchNote v-show="showComponent == 'AddPatchNote'" />
       <ListPatchNote v-show="showComponent == 'ListPatchNote'" />
+      <ListTags v-show="showComponent == 'ListTags'" />
+      <AddTags v-show="showComponent == 'AddTags'" />
     </div>
   </div>
 </template>
@@ -28,12 +40,16 @@
 <script>
 import ListPatchNote from "./patch/ListPatchNote";
 import AddPatchNote from "./patch/AddPatchNote";
+import ListTags from "./tags/ListTags";
+import AddTags from "./tags/AddTags";
 
 export default {
   name: "Main",
   components: {
     ListPatchNote,
     AddPatchNote,
+    ListTags,
+    AddTags,
   },
   data() {
     return {
@@ -53,7 +69,6 @@ export default {
       this.$router.push("/login");
     },
     changeShow: function (name) {
-      console.log(name)
       this.showComponent = name;
     },
   },
