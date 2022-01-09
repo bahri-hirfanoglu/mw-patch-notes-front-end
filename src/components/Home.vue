@@ -6,12 +6,12 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-lg-8">
-            <router-view />
+            <router-view  ref="childComponent"/>
         </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
           <!-- Search widget-->
-          <Search />
+          <Search  @inputSearch="search"/>
           <!-- Categories widget-->
           <Categories :data="data" />
           <!-- Side widget-->
@@ -46,7 +46,11 @@ export default {
       data: [],
     };
   },
-  methods: {},
+  methods: {
+    search: function (value) {
+      this.$refs.childComponent.searchData(value)
+    }
+  },
 };
 </script>
 

@@ -9,8 +9,9 @@
           placeholder="Enter search term..."
           aria-label="Enter search term..."
           aria-describedby="button-search"
+          v-model="searchText"
         />
-        <button class="btn btn-primary" id="button-search" type="button">
+        <button class="btn btn-primary" id="button-search" @click="goSearch">
           Go!
         </button>
       </div>
@@ -23,12 +24,18 @@ export default {
   name: "Search",
 
   data() {
-    return {};
+    return {
+      searchText: ""
+    };
   },
 
   mounted() {},
 
-  methods: {},
+  methods: {
+    goSearch: function() {
+      this.$emit('inputSearch', this.searchText);
+    }
+  },
 };
 </script>
 

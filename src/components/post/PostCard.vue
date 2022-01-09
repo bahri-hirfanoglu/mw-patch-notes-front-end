@@ -2,7 +2,7 @@
   <div class="row">
     <div
       class="col-lg-6"
-      v-for="(item, index) in data.slice(0, 4)"
+      v-for="(item, index) in data"
       v-bind:item="item._id"
       v-bind:index="index"
       v-bind:key="item._id"
@@ -34,6 +34,7 @@
         </section>
       </article>
     </div>
+    <div  class="alert alert-danger mt-2" v-show="this.data.length <= 0"><strong>A post containing the item searched was not found!</strong></div>
   </div>
 </template>
 
@@ -53,8 +54,17 @@ export default {
     let result = await Api.sendQuery(getPatchNotes().query);
     this.data = result.data.patchNotes;
   },
-
-  methods: {},
+  methods: {
+    searchData: function(value){
+       let newData = []
+      for(let item of this.data) {
+        if(item.title.toString().includes(value)|| item.detail.toString().includes(value)) {
+          newData.push(item)
+        }
+      }
+      this.data = newData;
+    }
+  },
 };
 </script>
 

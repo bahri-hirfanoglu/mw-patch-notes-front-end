@@ -42,6 +42,29 @@ const getPatchNote = (id) => {
   return data;
 };
 
+const searchPatchNotes = (search) => {
+  var data = {
+    query: `{
+      searchNotes(search:"${search}") {
+        _id  
+        title
+        detail
+        author
+        patchName
+        createdAt
+        tag {
+          _id
+          name
+          color
+        }
+      }
+    }
+    `,
+  };
+  return data;
+};
+
+
 const addPatchNote = (title, detail, patchName, author, createdAt, tagId) => {
   var data = {
     query: `
@@ -205,4 +228,5 @@ module.exports = {
   addNoteTag,
   deleteNodeTag,
   updateNoteTag,
+  searchPatchNotes
 };
